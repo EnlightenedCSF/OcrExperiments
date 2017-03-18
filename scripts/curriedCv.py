@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+from doc2text import rotate, compute_skew, estimate_skew
+
 from toolz.functoolz import pipe
 from functools import partial
 from toolz import curry
@@ -34,6 +36,14 @@ def clahe_to_l_channel(img):
     cl = clahe.apply(l)
     limg = cv2.merge((cl,a,b))
     return cv2.cvtColor(limg, cv2.COLOR_LAB2BGR)
+
+
+def descew(image):
+    try:
+        return rotate(image, compute_skew(estimate_skew(image)))
+    except:
+        return image
+
 
 #  -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 ## -=-=-=-=-=-=-=-=-=-=-=-=-=-= CURRIED -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
