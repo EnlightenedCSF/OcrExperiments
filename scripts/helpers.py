@@ -27,17 +27,6 @@ def show(i1, i2=None, i3=None, i4=None):
     plt.show()
 
 
-def get_countour_bounding_rect(contours, index):
-    """Принимает массив контуров и индекс - один из контуров.
-        Возвращает прямоугольник вокруг контура
-    """
-    x_min = min(cs[index][:,0][:,0])
-    x_max = max(cs[index][:,0][:,0])
-    y_min = min(cs[index][:,0][:,1])
-    y_max = max(cs[index][:,0][:,1])
-    return (x_min, y_min), (x_max, y_max)
-
-
 def _get_biggest_contour(cs):
     """Принимает массив контуров, возвращает самый большой"""
     area = -1
